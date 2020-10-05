@@ -8,6 +8,7 @@ import {
   validateForm,
 } from "../../form/formFramework";
 import classes from "./QuizCreator.module.css";
+import axios from '../../axios/axios-quiz'
 
 function createOptionControl(number) {
   return createControl(
@@ -81,10 +82,29 @@ class QuizCreator extends React.Component {
 
   };
 
-  createQuizHandler = (event) => {
+  createQuizHandler = async (event) => {
       event.preventDefault()
 
-      console.log(this.state.quiz);
+      try {
+        await axios.post('/quizes.json', this.state.quiz)
+        
+        this.setState({
+          quiz: [],
+          isFormValid: false,
+          rightAnswerId: 1,
+          formControls: createFormControls(),
+        })
+      } catch(e) {
+        console.log(e);
+      }
+
+      // axios.post('https://react-quiz-9fec7.firebaseio.com/quizes.json', this.state.quiz)
+      //     .then(response => {
+      //       console.log(response);
+      //     })
+      //     .catch(error => console.log(error))
+
+      // console.log(this.state.quiz);
   };
 
   submitHandler = (event) => {
