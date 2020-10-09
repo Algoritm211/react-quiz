@@ -3,8 +3,8 @@ import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import is from 'is_js'
-import axios from 'axios'
 import { connect } from "react-redux";
+import { auth } from "../../store/actions/authActions";
 
 
 
@@ -50,13 +50,6 @@ class Auth extends React.Component {
       this.state.formControls.password.value,
       true
     )
-    
-    // try {
-    //   const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAcUdLl5WF0yPzwz3hnT7Eg8aB-JJ4I-G8', authData)
-    //   console.log(response.data);
-    // } catch(e) {
-    //   console.log(e);
-    // }
   };
 
   registerHandler = () => {
@@ -66,12 +59,7 @@ class Auth extends React.Component {
       this.state.formControls.password.value,
       false
     )
-    // try {
-    //   const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAcUdLl5WF0yPzwz3hnT7Eg8aB-JJ4I-G8', authData)
-    //   console.log(response.data);
-    // } catch(e) {
-    //   console.log(e);
-    // }
+    
   };
 
   submitHandler = (event) => {
